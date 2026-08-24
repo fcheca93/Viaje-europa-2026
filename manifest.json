@@ -1,0 +1,11 @@
+{
+  "name": "Viaje Europa 2026",
+  "short_name": "Europa 2026",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0f1c2e",
+  "theme_color": "#152a47",
+  "icons": [
+    { "src": "icon.png", "sizes": "1024x1024", "type": "image/png" }
+  ]
+}

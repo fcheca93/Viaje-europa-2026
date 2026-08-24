@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Viaje Europa 2026</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Europa 2026">
+<meta name="theme-color" content="#152a47">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<link rel="manifest" href="manifest.json">
+<style>
+  :root{
+    --bg:#0f1c2e; --card:#152a47; --card2:#1c3660; --accent:#4f9dff;
+    --text:#eef3fa; --muted:#9db2d1; --warn:#ffb454; --warnbg:#3a2a10;
+    --line:#2a4468;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--bg);color:var(--text);padding-bottom:70px;}
+  header{padding:calc(env(safe-area-inset-top) + 18px) 16px 14px;background:var(--card);
+    position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);}
+  header h1{margin:0;font-size:19px;font-weight:600;}
+  header p{margin:4px 0 0;font-size:13px;color:var(--muted);}
+  nav{display:flex;gap:6px;padding:10px 16px;background:var(--bg);position:sticky;
+    top:64px;z-index:9;overflow-x:auto;}
+  nav button{flex:1;padding:9px 8px;border:none;border-radius:10px;background:var(--card);
+    color:var(--muted);font-size:13px;font-weight:600;white-space:nowrap;}
+  nav button.active{background:var(--accent);color:#062040;}
+  main{padding:12px 16px 24px;}
+  section{display:none;}
+  section.active{display:block;}
+  .day{background:var(--card);border-radius:14px;margin-bottom:10px;overflow:hidden;
+    border:1px solid var(--line);}
+  .day-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;}
+  .day-head .d{font-size:15px;font-weight:600;}
+  .day-head .s{font-size:12px;color:var(--muted);margin-top:2px;}
+  .day-head .chev{font-size:14px;color:var(--muted);transition:transform .2s;}
+  .day.open .chev{transform:rotate(180deg);}
+  .day-body{display:none;padding:0 16px 16px;font-size:14px;line-height:1.55;}
+  .day.open .day-body{display:block;}
+  .item{padding:6px 0;border-top:1px solid var(--line);}
+  .item:first-child{border-top:none;}
+  .time{color:var(--accent);font-weight:600;margin-right:6px;}
+  .flag{background:var(--warnbg);color:var(--warn);border-radius:8px;padding:8px 10px;
+    font-size:13px;margin-top:8px;}
+  .stay{margin-top:10px;padding:10px 12px;background:var(--card2);border-radius:10px;
+    font-size:13px;}
+  .stay b{display:block;margin-bottom:2px;font-size:13.5px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);}
+  th{color:var(--muted);font-weight:600;font-size:12px;}
+  .pill{display:inline-block;background:var(--card2);border-radius:20px;padding:3px 10px;
+    font-size:12px;color:var(--accent);margin-bottom:6px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;}
+  .card h3{margin:0 0 6px;font-size:15px;}
+  .card p{margin:2px 0;font-size:13.5px;color:var(--muted);}
+  .card p b{color:var(--text);}
+  .top-note{font-size:12.5px;color:var(--muted);margin-bottom:12px;}
+  .search{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card2);color:var(--text);font-size:14px;margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Viaje Europa · 3-24 Sep 2026</h1>
+  <p>Francisco, papá, mamá, Estefanía · Ari se une en París</p>
+</header>
+
+<nav>
+  <button class="active" data-tab="itinerario">Itinerario</button>
+  <button data-tab="alojamientos">Hoteles</button>
+  <button data-tab="clima">Clima</button>
+</nav>
+
+<main>
+  <section id="itinerario" class="active">
+    <input class="search" id="search" placeholder="Buscar (ej. Coliseo, tren, Vaticano)">
+    <div id="days"></div>
+  </section>
+
+  <section id="alojamientos">
+    <div id="hotels"></div>
+  </section>
+
+  <section id="clima">
+    <div class="top-note">Promedios históricos de septiembre, no pronóstico exacto.</div>
+    <table>
+      <tr><th>Destino</th><th>Máx/Mín</th><th>Llevar</th></tr>
+      <tbody id="climaBody"></tbody>
+    </table>
+  </section>
+</main>
+
+<script>
+const DAYS = [
+{date:"3 Sep (jueves)", stay:null, items:[
+  "16:05 — KL 751, Quito (vía Guayaquil) → Amsterdam, llegada 4 Sep 13:15h"
+]},
+{date:"4 Sep (viernes)", stay:"Casa de Francisco, Wandsbeker Marktstraße 141, Hamburgo", items:[
+  "16:50 — KL 1757, Amsterdam → Hamburgo, llegada 17:50h",
+  "Traslado a casa de Francisco, cena en familia 20:30-21:30"
+]},
+{date:"5 Sep (sábado) — Descanso + cumpleaños de Ari", stay:"Casa de Francisco, Wandsbeker Marktstraße 141, Hamburgo", items:[
+  "09:00 — Despertar", "09:00-09:30 — Desayuno", "Mañana libre / descanso",
+  "13:00-14:00 — Almuerzo por cumpleaños de Ari", "Tarde libre / descanso",
+  "20:00-21:00 — Cena"
+]},
+{date:"6 Sep (domingo) — Hamburgo en familia", stay:"Casa de Francisco, Wandsbeker Marktstraße 141, Hamburgo", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:00 — Salida a recorrer Hamburgo con la familia",
+  "13:00-14:00 — Almuerzo", "Tarde — Continuación del recorrido por Hamburgo",
+  "20:00-21:00 — Cena"
+]},
+{date:"7 Sep (lunes) — Hamburgo → Berlín", stay:"mk hotel berlin, Osloer Straße 100, Mitte, 13359 Berlín · Check-in desde 14:00h · Check-out hasta 11:00h", items:[
+  "06:45 — Despertar", "07:00-07:30 — Desayuno",
+  "07:50 — Salida hacia Hamburgo Hbf", "08:15 — Llegada a la estación",
+  "08:34 — Hamburgo Hbf → Berlín Hbf (ICE 507)",
+  "10:22 — Llegada a Berlín Hbf, traslado al hotel",
+  "13:00-14:00 — Almuerzo", "Tarde libre en Berlín", "20:00-21:00 — Cena"
+]},
+{date:"8 Sep (martes) — Potsdam", stay:"Riverside Palace Suites, 3 Resslova, Praga, 120 00 · Check-in 15:00-00:00h", items:[
+  "07:30 — Despertar", "08:00-08:30 — Desayuno + check-out (maletas en consigna)",
+  "08:30 — Salida hacia Potsdam", "09:20 — Llegada Potsdam Hbf",
+  "09:45-10:00 — Jardines de Sanssouci", "10:00-12:30 — Palacio Sanssouci",
+  "12:30-13:30 — Almuerzo", "13:30-15:00 — Barrio Holandés",
+  "15:00 — Regreso a Potsdam Hbf", "15:30-16:15 — Vuelta a Berlín Hbf",
+  "16:15-17:15 — Recoger maletas", "17:28 — Berlín Hbf → Praha hl.n. (RJ 385)",
+  "21:25 — Llegada a Praga, traslado al hotel", "21:45-22:45 — Cena (tardía)"
+]},
+{date:"9 Sep (miércoles) — Praga + lavandería", stay:"Riverside Palace Suites, 3 Resslova, Praga, 120 00", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:00 — Casco Antiguo: Plaza de la Ciudad Vieja, Reloj Astronómico, Iglesia de Týn",
+  "Barrio Judío (Josefov)", "13:00-14:00 — Almuerzo",
+  "Tarde — Puente de Carlos, Castillo de Praga (Catedral de San Vito + Antiguo Palacio Real)",
+  "18:00-19:00 — Cena (adelantada)", "19:00-21:00 — Lavandería"
+]},
+{date:"10 Sep (jueves) — Praga → Múnich", stay:"Smart Stay Hotel Station, Schützenstraße 7, Ludwigsvorstadt, 80335 Múnich · Check-in desde 14:00h", items:[
+  "08:30 — Despertar", "08:30-09:00 — Desayuno", "09:00-10:00 — Empacar y check-out (hasta 10:00h)",
+  "10:00-12:00 — Malá Strana + Torre del Puente", "13:00-14:00 — Almuerzo",
+  "14:30 — Salida hacia la estación", "15:00 — Llegada a la estación",
+  "15:35 — Praha hl.n. → München Hbf (EC 352)",
+  "21:18 — Llegada a Múnich, traslado al hotel", "21:30-22:30 — Cena (tardía)"
+]},
+{date:"11 Sep (viernes) — Múnich → Füssen", stay:"My Wolly Hostel, 11 Reichenstraße 1 OG, 87629 Füssen · Check-in 15:00-18:00h", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:00 — Marienplatz, Frauenkirche, Viktualienmarkt", "13:00-14:00 — Almuerzo",
+  "Tarde libre en Múnich", "19:00-20:00 — Cena (adelantada por el viaje nocturno)",
+  "Noche — Múnich → Füssen (horario exacto pendiente de confirmar)"
+], flag:"CONFLICTO: el check-in del hostel cierra a las 18:00h, pero llegan en tren nocturno (probablemente después de las 22:00h). Avisar al hostel para late check-in."},
+{date:"12 Sep (sábado) — Neuschwanstein → Mannheim", stay:"B&B Hotel Mannheim-City, C 7, 9-11, 68159 Mannheim · Check-in desde 15:00h — Estefanía en su casa (U1 20, 68161 Mannheim)", items:[
+  "07:00 — Despertar", "07:00-07:30 — Desayuno + check-out (equipaje en consigna del hostel)",
+  "07:45 — Salida hacia Hohenschwangau", "08:15 — Llegada al centro de tickets",
+  "08:45 — Subida hacia Neuschwanstein", "09:20 — Entrada Neuschwanstein",
+  "09:50 — Fin del tour", "10:00-12:30 — Tiempo libre (pueblo, lago Alpsee)",
+  "12:30-13:30 — Almuerzo", "13:40 — Entrada Hohenschwangau", "14:10 — Fin del tour",
+  "14:30 — Regreso a Füssen, recoger equipaje del hostel", "15:00 — Salida hacia la estación",
+  "Tarde — Füssen → Mannheim (horario exacto pendiente de confirmar)",
+  "20:00-21:00 — Cena (estimado)"
+]},
+{date:"13 Sep (domingo) — Heidelberg + Mannheim + lavandería", stay:"B&B Hotel Mannheim-City, C 7, 9-11, 68159 Mannheim · Check-out hasta 12:00h (al día siguiente)", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:00 — Mannheim → Heidelberg (tren, 11-16 min)",
+  "09:20-12:30 — Heidelberg: Schloss Heidelberg, Alte Brücke, casco antiguo",
+  "12:30-13:30 — Almuerzo en Heidelberg", "13:30 — Heidelberg → Mannheim (regreso)",
+  "14:00-18:00 — Mannheim: Wasserturm, Quadrate, opcional Schloss Mannheim",
+  "18:00-19:00 — Cena (adelantada)", "19:00-21:00 — Lavandería",
+  "Noche — Empacar para la salida temprana del día siguiente"
+]},
+{date:"14 Sep (lunes) — Mannheim → Zúrich → Interlaken", stay:"Airbnb Interlaken (Ali Agha), Brienzstrasse 36, Interlaken · Check-in 15:00h", items:[
+  "05:30 — Despertar", "05:30-06:00 — Desayuno (verificar horario del hotel)",
+  "06:15 — Llegada a la estación", "06:37 — Mannheim Hbf → Zürich HB",
+  "10:00 — Llegada a Zúrich", "10:00-13:00 — Lindenhof, Fraumünster, Grossmünster, Peterskirche",
+  "13:00-14:00 — Almuerzo", "14:00-18:30 — Paseo por el lago, tiempo libre",
+  "18:40 — Llegada a la estación", "19:02 — Zürich HB → Interlaken Ost (IC 830)",
+  "20:59 — Llegada a Interlaken", "21:15-22:00 — Cena (tardía)"
+]},
+{date:"15 Sep (martes) — Lauterbrunnen + Grindelwald → Chur", stay:"Hotel Franziskaner, Kupfergasse 18, 7000 Chur · Check-in 15:00-22:00h", items:[
+  "07:30 — Despertar", "08:00-08:30 — Desayuno",
+  "08:30 — Check-out, equipaje en consigna en Interlaken Ost",
+  "09:30 — Interlaken Ost → Lauterbrunnen, llegada 09:52h",
+  "09:52-11:00 — Visita Lauterbrunnen",
+  "11:05 — Lauterbrunnen → Grindelwald (vía Zweilütschinen), llegada ~11:44h",
+  "11:44-12:30 — Almuerzo en Grindelwald", "12:30 — Góndola a First",
+  "13:00-16:30 — First: Cliff Walk y tiempo libre", "16:30 — Bajada de First",
+  "17:47 — Grindelwald → Interlaken Ost (R61), llegada 18:24h",
+  "18:24-18:29 — Recoger equipaje",
+  "18:29 — Interlaken Ost → Zürich HB (IC 61, directo), llegada ~20:28h",
+  "Transbordo en Zúrich → Chur, llegada 21:52h", "22:00-23:00 — Cena (muy tardía)"
+], flag:"Llegan a las 21:52h, solo 8 min antes de que cierre el check-in (22:00h). Avisar al hotel con antelación por si el tren se retrasa."},
+{date:"16 Sep (miércoles) — Chur → Venecia", stay:"Haus Ormesini, Cannaregio 2685, 30121 Venecia · Check-in 15:00-20:00h", items:[
+  "07:00 — Despertar", "07:00-07:30 — Desayuno (verificar horario del hotel)",
+  "07:45 — Check-out", "~08:00 — Chur → Pontresina (horario exacto pendiente)",
+  "~10:00 — Llegada a Pontresina",
+  "10:08 — Pontresina → Alp Grüm (Bernina Regio 4621), llegada 10:49h",
+  "10:49-11:44 — Parada en Alp Grüm",
+  "11:44 — Alp Grüm → Tirano (Bernina Regio 1625), llegada 13:00h",
+  "13:00-14:00 — Almuerzo en Tirano",
+  "14:08 — Tirano → Milano → Venezia (Trenord 2831/Frecciarossa 9749/Regionale 16821)",
+  "19:48 — Llegada a Venezia Santa Lucia", "20:15-21:15 — Cena"
+], flag:"Llegan a la estación a las 19:48h con muy poco margen para llegar a Cannaregio antes de que cierre el check-in (20:00h). Avisar al alojamiento con antelación."},
+{date:"17 Sep (jueves) — Venecia", stay:"Haus Ormesini, Cannaregio 2685, 30121 Venecia", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:00 — Día libre en Venecia (contenido pendiente de definir)",
+  "13:00-14:00 — Almuerzo", "Tarde libre", "20:00-21:00 — Cena"
+]},
+{date:"18 Sep (viernes) — Venecia → Roma + Vaticano", stay:"GM House Rome, 129 Via Alessandria, 00198 Roma (horario check-in/out pendiente)", items:[
+  "06:00 — Despertar", "06:00-06:30 — Desayuno (verificar horario del hotel)",
+  "06:30 — Check-out", "06:45 — Salida hacia la estación", "07:00 — Llegada a la estación",
+  "07:26 — Venezia S. Lucia → Roma Termini (Frecciarossa 9405)",
+  "11:22 — Llegada a Roma Termini", "11:22-11:40 — Deposito Bagagli en Termini",
+  "12:00-13:00 — Almuerzo cerca de Termini", "13:00-14:00 — Traslado hacia el Vaticano",
+  "14:30 — Llegada al Vaticano (30 min antes del tour)",
+  "15:00 — Tour guiado Museos Vaticanos (español, código 2L2N0R8S3TTG95HHM1)",
+  "16:30 — Fin del tour aprox., traslado al hotel", "20:00-21:00 — Cena"
+]},
+{date:"19 Sep (sábado) — Coliseo", stay:"GM House Rome, 129 Via Alessandria, 00198 Roma", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno",
+  "09:30 — Llegada al Coliseo (15 min antes)", "10:00 — Visita al Coliseo",
+  "11:30-14:00 — Foro Romano y Palatino", "14:00-15:00 — Almuerzo en Monti",
+  "Tarde libre: Fontana di Trevi, Panteón, Piazza Navona, Trastevere", "20:00-21:00 — Cena"
+]},
+{date:"20 Sep (domingo) — Basílica de San Pedro + lavandería", stay:"GM House Rome, 129 Via Alessandria, 00198 Roma", items:[
+  "08:30 — Despertar", "08:30-09:00 — Desayuno", "09:30 — Basílica de San Pedro (entrada libre)",
+  "11:15 — Llegada a la Plaza de San Pedro (45 min antes)", "12:00 — Ángelus del Papa",
+  "13:00-14:00 — Almuerzo", "Tarde libre en Roma", "18:00-19:00 — Cena (adelantada)",
+  "19:00-21:00 — Lavandería"
+]},
+{date:"21 Sep (lunes) — Roma → París + Torre Eiffel", stay:"Appartement Tour Eiffel Alésia, 87 Rue d'Alésia, 14th arr., 75014 París · Check-in 16:00-21:00h", items:[
+  "06:30 — Despertar", "06:30-07:00 — Desayuno + check-out",
+  "07:00 — Salida hacia Fiumicino (traslado directo, ~45-60 min)",
+  "08:00-08:15 — Llegada a Fiumicino", "10:50 — Roma Fiumicino → Paris Orly (Transavia TO3911)",
+  "13:00 — Llegada a Paris Orly — se une Ari aquí (5 personas)",
+  "13:30 — Traslado hacia el apartamento (check-in no antes de las 16:00h)",
+  "14:00-15:00 — Almuerzo cerca del apartamento", "15:00-16:00 — Tiempo libre",
+  "16:00 — Check-in en el apartamento", "16:30 — Salida hacia la Torre Eiffel",
+  "17:00-19:00 — Torre Eiffel (entrada pendiente de comprar)", "20:00-21:00 — Cena"
+]},
+{date:"22 Sep (martes) — Versalles", stay:"Appartement Tour Eiffel Alésia, 87 Rue d'Alésia, 14th arr., 75014 París", items:[
+  "07:30 — Despertar", "07:30-08:00 — Desayuno", "08:15 — Salida hacia Versalles (RER C)",
+  "09:30 — Llegada a Versalles (30 min antes)", "10:00 — Entrada Palacio de Versalles",
+  "13:00-14:00 — Almuerzo", "Tarde — Jardines de Versalles", "20:00-21:00 — Cena"
+]},
+{date:"23 Sep (miércoles) — Louvre + Notre-Dame", stay:"Appartement Tour Eiffel Alésia, 87 Rue d'Alésia, 14th arr., 75014 París", items:[
+  "08:00 — Despertar", "08:00-08:30 — Desayuno", "09:00 — Salida hacia el Louvre",
+  "09:15 — Llegada (15 min antes)", "09:30 — Entrada Louvre", "12:30 — Fin de la visita",
+  "12:30-13:30 — Almuerzo", "14:00 — Notre-Dame", "20:00-21:00 — Cena"
+]},
+{date:"24 Sep (jueves) — Regreso a Quito", stay:null, items:[
+  "07:00 — Despertar", "07:00-07:30 — Desayuno + check-out",
+  "10:30 — Salida hacia el aeropuerto CDG (~1h-1h15min)", "12:00 — Llegada a CDG",
+  "12:30-13:30 — Almuerzo en el aeropuerto",
+  "15:45 — AF 490, París CDG → Panamá, llegada 19:45h",
+  "21:30 — AF 5535 (operado por Copa CM 428), Panamá → Quito, llegada 23:31h"
+]}
+];
+
+const HOTELS = [
+{n:"Casa de Francisco", a:"Wandsbeker Marktstraße 141, Hamburgo", d:"4-7 Sep"},
+{n:"mk hotel berlin", a:"Osloer Straße 100, Mitte, 13359 Berlín", d:"7-8 Sep · Check-in desde 14:00h · Check-out hasta 11:00h"},
+{n:"Riverside Palace Suites", a:"3 Resslova, Praga, 120 00", d:"8-10 Sep · Check-in 15:00-00:00h · Check-out hasta 10:00h"},
+{n:"Smart Stay Hotel Station", a:"Schützenstraße 7, Ludwigsvorstadt, 80335 Múnich", d:"10-11 Sep · Check-in desde 14:00h · Check-out hasta 11:00h"},
+{n:"My Wolly Hostel", a:"11 Reichenstraße 1 OG, 87629 Füssen", d:"11-12 Sep · Check-in 15:00-18:00h · Check-out 09:00-09:30h"},
+{n:"B&B Hotel Mannheim-City", a:"C 7, 9-11, 68159 Mannheim", d:"12-14 Sep · Check-in desde 15:00h · Check-out hasta 12:00h"},
+{n:"Casa de Estefanía", a:"U1 20, 68161 Mannheim", d:"referencia familiar en Mannheim"},
+{n:"Airbnb Interlaken (Ali Agha)", a:"Brienzstrasse 36, Interlaken", d:"14-15 Sep · Check-in 15:00h · Check-out 10:00h"},
+{n:"Hotel Franziskaner", a:"Kupfergasse 18, 7000 Chur", d:"15-16 Sep · Check-in 15:00-22:00h · Check-out 07:00-11:00h"},
+{n:"Haus Ormesini", a:"Cannaregio 2685, 30121 Venecia", d:"16-18 Sep · Check-in 15:00-20:00h · Check-out hasta 10:00h"},
+{n:"GM House Rome", a:"129 Via Alessandria, 00198 Roma", d:"18-21 Sep · check-in/out pendiente de confirmar"},
+{n:"Appartement Tour Eiffel Alésia", a:"87 Rue d'Alésia, 14th arr., 75014 París", d:"21-24 Sep · Check-in 16:00-21:00h · Check-out hasta 11:00h"}
+];
+
+const CLIMA = [
+["Hamburgo (4-7 Sep)","19°C / 11°C","Entretiempo por capas, impermeable, paraguas"],
+["Berlín/Potsdam (7-8 Sep)","21°C / 12°C","Capas ligeras, cortavientos, calzado cómodo"],
+["Praga (8-10 Sep)","20°C / 11°C","Capas, jersey mañana/noche, chaqueta ligera"],
+["Múnich (10-11 Sep)","19°C / 8°C","Capas, chaqueta de entretiempo"],
+["Füssen (11-12 Sep)","~18°C / 7°C (estimado)","Abrigo por capas, impermeable, calzado cerrado"],
+["Mannheim/Heidelberg (12-14 Sep)","21°C / 11°C","Ropa ligera de entretiempo"],
+["Zúrich (14 Sep)","21°C / 9°C","Capas, chaqueta ligera"],
+["Interlaken/Lauterbrunnen/Grindelwald (14-15 Sep)","12°C / 3°C (más frío en First, 2168m)","Abrigo serio: térmica, cortavientos, gorro y guantes"],
+["Chur (15-16 Sep)","~20°C / 4°C (noches frías)","Capas, chaqueta abrigada de noche"],
+["Venecia (16-18 Sep)","24°C / 19°C","Ropa ligera de verano, algo para lluvia"],
+["Roma (18-21 Sep)","26°C / 20°C","Ropa ligera, protector solar, calzado cómodo"],
+["París (21-24 Sep)","22°C / 13°C","Entretiempo por capas, paraguas ligero"]
+];
+
+function renderDays(filter=""){
+  const el = document.getElementById("days");
+  el.innerHTML = "";
+  DAYS.forEach((day,i)=>{
+    const text = (day.date + " " + day.items.join(" ")).toLowerCase();
+    if(filter && !text.includes(filter.toLowerCase())) return;
+    const div = document.createElement("div");
+    div.className = "day";
+    div.innerHTML = `
+      <div class="day-head" onclick="this.parentElement.classList.toggle('open')">
+        <div><div class="d">${day.date}</div></div>
+        <div class="chev">▾</div>
+      </div>
+      <div class="day-body">
+        ${day.items.map(it=>{
+          const m = it.match(/^([0-9~][0-9:\-—~ ]*)( — )(.*)$/);
+          if(m) return `<div class="item"><span class="time">${m[1]}</span>${m[3]}</div>`;
+          return `<div class="item">${it}</div>`;
+        }).join("")}
+        ${day.flag ? `<div class="flag">⚠️ ${day.flag}</div>` : ""}
+        ${day.stay ? `<div class="stay"><b>🏨 ${day.stay}</b></div>` : ""}
+      </div>`;
+    el.appendChild(div);
+  });
+}
+
+function renderHotels(){
+  const el = document.getElementById("hotels");
+  el.innerHTML = HOTELS.map(h=>`
+    <div class="card">
+      <span class="pill">${h.d}</span>
+      <h3>${h.n}</h3>
+      <p>${h.a}</p>
+    </div>`).join("");
+}
+
+function renderClima(){
+  const el = document.getElementById("climaBody");
+  el.innerHTML = CLIMA.map(c=>`<tr><td>${c[0]}</td><td>${c[1]}</td><td>${c[2]}</td></tr>`).join("");
+}
+
+document.querySelectorAll("nav button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+    document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+  });
+});
+
+document.getElementById("search").addEventListener("input", e=>renderDays(e.target.value));
+
+renderDays();
+renderHotels();
+renderClima();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>
