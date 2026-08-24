@@ -3,8 +3,8 @@
   "short_name": "Europa 2026",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0f1c2e",
-  "theme_color": "#152a47",
+  "background_color": "#f4f6fa",
+  "theme_color": "#ffffff",
   "icons": [
     { "src": "icon.png", "sizes": "1024x1024", "type": "image/png" }
   ]
