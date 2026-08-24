@@ -111,16 +111,16 @@ const DAYS = [
   "13:00 — Llegada al aeropuerto (check-in, ~3h antes del vuelo)",
   "16:05 — KL 751, Quito (vía Guayaquil) → Amsterdam, llegada 4 Sep 13:15h"
 ]},
-{date:"✈️ 4 Sep (viernes)", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:""}, items:[
+{date:"✈️ 4 Sep (viernes)", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "16:50 — KL 1757, Amsterdam → Hamburgo, llegada 17:50h",
   "Traslado a casa de Francisco, cena en familia 20:30-21:30"
 ]},
-{date:"⚓ 5 Sep (sábado) — Descanso + cumpleaños de Ari", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:""}, items:[
+{date:"⚓ 5 Sep (sábado) — Descanso + cumpleaños de Ari", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "09:00 — Despertar", "09:00-09:30 — Desayuno", "Mañana libre / descanso",
   "13:00-14:00 — Almuerzo por cumpleaños de Ari", "Tarde libre / descanso",
   "20:00-21:00 — Cena"
 ]},
-{date:"⚓ 6 Sep (domingo) — Hamburgo en familia", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:""}, items:[
+{date:"⚓ 6 Sep (domingo) — Hamburgo en familia", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Salida a recorrer Hamburgo con la familia",
   "13:00-14:00 — Almuerzo", "Tarde — Continuación del recorrido por Hamburgo",
@@ -275,13 +275,13 @@ const DAYS = [
 ];
 
 const HOTELS = [
-{n:"⚓ Casa de Francisco", a:"Wandsbeker Marktstraße 141, Hamburgo", d:"4-7 Sep"},
+{n:"⚓ Casa de Francisco", a:"Wandsbeker Marktstraße 141, Hamburgo", d:"4-7 Sep", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"},
 {n:"🐻 mk hotel berlin", a:"Osloer Straße 100, Mitte, 13359 Berlín", d:"7-8 Sep · Check-in desde 14:00h · Check-out hasta 11:00h"},
 {n:"🌉 Riverside Palace Suites", a:"3 Resslova, Praga, 120 00", d:"8-10 Sep · Check-in 15:00-00:00h · Check-out hasta 10:00h"},
 {n:"🍺 Smart Stay Hotel Station", a:"Schützenstraße 7, Ludwigsvorstadt, 80335 Múnich", d:"10-11 Sep · Check-in desde 14:00h · Check-out hasta 11:00h"},
 {n:"🏰 My Wolly Hostel", a:"11 Reichenstraße 1 OG, 87629 Füssen", d:"11-12 Sep · Check-in 15:00-18:00h · Check-out 09:00-09:30h"},
 {n:"🎓 B&B Hotel Mannheim-City", a:"C 7, 9-11, 68159 Mannheim", d:"12-14 Sep · Check-in desde 15:00h · Check-out hasta 12:00h"},
-{n:"👨‍👩‍👧 Casa de Estefanía", a:"U1 20, 68161 Mannheim", d:"referencia familiar en Mannheim"},
+{n:"👨‍👩‍👧 Casa de Estefanía", a:"U1 20, 68161 Mannheim", d:"referencia familiar en Mannheim", mapsQuery:"U1 20, 68161 Mannheim"},
 {n:"🇨🇭 Airbnb Interlaken (Ali Agha)", a:"Brienzstrasse 36, Interlaken", d:"14-15 Sep · Check-in 15:00h · Check-out 10:00h"},
 {n:"🏔️ Hotel Franziskaner", a:"Kupfergasse 18, 7000 Chur", d:"15-16 Sep · Check-in 15:00-22:00h · Check-out 07:00-11:00h"},
 {n:"🎭 Haus Ormesini", a:"Cannaregio 2685, 30121 Venecia", d:"16-18 Sep · Check-in 15:00-20:00h · Check-out hasta 10:00h"},
@@ -314,11 +314,12 @@ function renderDays(filter=""){
     div.className = "day";
     let stayHtml = "";
     if(day.stay){
+      const query = day.stay.mapsQuery || (day.stay.name + ", " + day.stay.addr);
       stayHtml = `<div class="stay">
         <b>🏨 ${day.stay.name}</b>
         <div class="addr">${day.stay.addr}</div>
         ${day.stay.note ? `<div class="addr">${day.stay.note}</div>` : ""}
-        <a class="maps-link" href="${mapsLink(day.stay.name + ", " + day.stay.addr)}" target="_blank">📍 Ver en Google Maps</a>
+        <a class="maps-link" href="${mapsLink(query)}" target="_blank">📍 Ver en Google Maps</a>
       </div>`;
     }
     div.innerHTML = `
@@ -346,7 +347,7 @@ function renderHotels(){
       <span class="pill">${h.d}</span>
       <h3>${h.n}</h3>
       <p>${h.a}</p>
-      <a class="maps-link" href="${mapsLink(h.n.replace(/^\S+\s/,"") + ", " + h.a)}" target="_blank">📍 Ver en Google Maps</a>
+      <a class="maps-link" href="${mapsLink(h.mapsQuery || (h.n.replace(/^\S+\s/,"") + ", " + h.a))}" target="_blank">📍 Ver en Google Maps</a>
     </div>`).join("");
 }
 
