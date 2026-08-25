@@ -103,7 +103,7 @@ function mapsLink(addr){
 }
 
 const DAYS = [
-{date:"✈️ 3 Sep (jueves)", stay:null, items:[
+{date:"✈️ 3 Sep (jueves) — Quito 🇪🇨", stay:null, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "Mañana libre — últimos preparativos de maletas",
   "11:00-12:00 — Almuerzo",
@@ -111,29 +111,29 @@ const DAYS = [
   "13:00 — Llegada al aeropuerto (check-in, ~3h antes del vuelo)",
   "16:05 — KL 751, Quito (vía Guayaquil) → Amsterdam, llegada 4 Sep 13:15h"
 ]},
-{date:"✈️ 4 Sep (viernes)", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
+{date:"✈️ 4 Sep (viernes) — Hamburgo 🇩🇪", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "16:50 — KL 1757, Amsterdam → Hamburgo, llegada 17:50h",
   "Traslado a casa de Francisco, cena en familia 20:30-21:30"
 ]},
-{date:"⚓ 5 Sep (sábado) — Descanso + cumpleaños de Ari", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
+{date:"⚓ 5 Sep (sábado) — Hamburgo 🇩🇪", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "09:00 — Despertar", "09:00-09:30 — Desayuno", "Mañana libre / descanso",
   "13:00-14:00 — Almuerzo por cumpleaños de Ari", "Tarde libre / descanso",
   "20:00-21:00 — Cena"
 ]},
-{date:"⚓ 6 Sep (domingo) — Hamburgo en familia", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
+{date:"⚓ 6 Sep (domingo) — Hamburgo 🇩🇪", stay:{name:"Casa de Francisco", addr:"Wandsbeker Marktstraße 141, Hamburgo", note:"", mapsQuery:"Wandsbeker Marktstraße 141, Hamburgo"}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Salida a recorrer Hamburgo con la familia",
   "13:00-14:00 — Almuerzo", "Tarde — Continuación del recorrido por Hamburgo",
   "20:00-21:00 — Cena"
 ]},
-{date:"🐻 7 Sep (lunes) — Hamburgo → Berlín", stay:{name:"mk hotel berlin", addr:"Osloer Straße 100, Mitte, 13359 Berlín", note:"7→8 Sep, 1 noche · Check-in desde 14:00h · Check-out hasta 11:00h"}, items:[
+{date:"🐻 7 Sep (lunes) — Hamburgo 🇩🇪 → Berlín 🇩🇪", stay:{name:"mk hotel berlin", addr:"Osloer Straße 100, Mitte, 13359 Berlín", note:"7→8 Sep, 1 noche · Check-in desde 14:00h · Check-out hasta 11:00h"}, items:[
   "06:45 — Despertar", "07:00-07:30 — Desayuno",
   "07:50 — Salida hacia Hamburgo Hbf", "08:15 — Llegada a la estación",
   "08:34 — Hamburgo Hbf → Berlín Hbf (ICE 507)",
   "10:22 — Llegada a Berlín Hbf, traslado al hotel",
   "13:00-14:00 — Almuerzo", "Tarde libre en Berlín", "20:00-21:00 — Cena"
 ]},
-{date:"🏰 8 Sep (martes) — Potsdam", stay:{name:"Riverside Palace Suites", addr:"3 Resslova, Praga, 120 00", note:"8→10 Sep, 2 noches · Check-in 15:00-00:00h"}, items:[
+{date:"🏰 8 Sep (martes) — Potsdam 🇩🇪", stay:{name:"Riverside Palace Suites", addr:"3 Resslova, Praga, 120 00", note:"8→10 Sep, 2 noches · Check-in 15:00-00:00h"}, items:[
   "07:30 — Despertar", "08:00-08:30 — Desayuno + check-out (maletas en consigna)",
   "08:30 — Salida hacia Potsdam", "09:20 — Llegada Potsdam Hbf",
   "09:45-10:00 — Jardines de Sanssouci", "10:00-12:30 — Palacio Sanssouci",
@@ -142,27 +142,27 @@ const DAYS = [
   "16:15-17:15 — Recoger maletas", "17:28 — Berlín Hbf → Praha hl.n. (RJ 385)",
   "21:25 — Llegada a Praga, traslado al hotel", "21:45-22:45 — Cena (tardía)"
 ]},
-{date:"🌉 9 Sep (miércoles) — Praga + lavandería", stay:{name:"Riverside Palace Suites", addr:"3 Resslova, Praga, 120 00", note:""}, items:[
+{date:"🌉 9 Sep (miércoles) — Praga 🇨🇿", stay:{name:"Riverside Palace Suites", addr:"3 Resslova, Praga, 120 00", note:""}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Casco Antiguo: Plaza de la Ciudad Vieja, Reloj Astronómico, Iglesia de Týn",
   "Barrio Judío (Josefov)", "13:00-14:00 — Almuerzo",
   "Tarde — Puente de Carlos, Castillo de Praga (Catedral de San Vito + Antiguo Palacio Real)",
   "18:00-19:00 — Cena (adelantada)", "19:00-21:00 — Lavandería"
 ]},
-{date:"🍺 10 Sep (jueves) — Praga → Múnich", stay:{name:"Smart Stay Hotel Station", addr:"Schützenstraße 7, Ludwigsvorstadt, 80335 Múnich", note:"10→11 Sep, 1 noche · Check-in desde 14:00h"}, items:[
+{date:"🍺 10 Sep (jueves) — Praga 🇨🇿 → Múnich 🇩🇪", stay:{name:"Smart Stay Hotel Station", addr:"Schützenstraße 7, Ludwigsvorstadt, 80335 Múnich", note:"10→11 Sep, 1 noche · Check-in desde 14:00h"}, items:[
   "08:30 — Despertar", "08:30-09:00 — Desayuno", "09:00-10:00 — Empacar y check-out (hasta 10:00h)",
   "10:00-12:00 — Malá Strana + Torre del Puente", "13:00-14:00 — Almuerzo",
   "14:30 — Salida hacia la estación", "15:00 — Llegada a la estación",
   "15:35 — Praha hl.n. → München Hbf (EC 352)",
   "21:18 — Llegada a Múnich, traslado al hotel", "21:30-22:30 — Cena (tardía)"
 ]},
-{date:"🍺 11 Sep (viernes) — Múnich → Füssen", stay:{name:"My Wolly Hostel", addr:"11 Reichenstraße 1 OG, 87629 Füssen", note:"11→12 Sep, 1 noche · Check-in 15:00-18:00h"}, items:[
+{date:"🍺 11 Sep (viernes) — Múnich 🇩🇪 → Füssen 🇩🇪", stay:{name:"My Wolly Hostel", addr:"11 Reichenstraße 1 OG, 87629 Füssen", note:"11→12 Sep, 1 noche · Check-in 15:00-18:00h"}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Marienplatz, Frauenkirche, Viktualienmarkt", "13:00-14:00 — Almuerzo",
   "Tarde libre en Múnich", "19:00-20:00 — Cena (adelantada por el viaje nocturno)",
   "Noche — Múnich → Füssen (horario exacto pendiente de confirmar)"
 ], flag:"CONFLICTO: el check-in del hostel cierra a las 18:00h, pero llegan en tren nocturno (probablemente después de las 22:00h). Avisar al hostel para late check-in."},
-{date:"🏰 12 Sep (sábado) — Neuschwanstein → Mannheim", stay:{name:"B&B Hotel Mannheim-City", addr:"C 7, 9-11, 68159 Mannheim", note:"12→14 Sep, 2 noches · Check-in desde 15:00h — Estefanía en su casa (U1 20, 68161 Mannheim)"}, items:[
+{date:"🏰 12 Sep (sábado) — Füssen 🇩🇪 → Mannheim 🇩🇪", stay:{name:"B&B Hotel Mannheim-City", addr:"C 7, 9-11, 68159 Mannheim", note:"12→14 Sep, 2 noches · Check-in desde 15:00h — Estefanía en su casa (U1 20, 68161 Mannheim)"}, items:[
   "07:00 — Despertar", "07:00-07:30 — Desayuno + check-out (equipaje en consigna del hostel)",
   "07:45 — Salida hacia Hohenschwangau", "08:15 — Llegada al centro de tickets",
   "08:45 — Subida hacia Neuschwanstein", "09:20 — Entrada Neuschwanstein",
@@ -172,7 +172,7 @@ const DAYS = [
   "Tarde — Füssen → Mannheim (horario exacto pendiente de confirmar)",
   "20:00-21:00 — Cena (estimado)"
 ]},
-{date:"🎓 13 Sep (domingo) — Heidelberg + Mannheim + lavandería", stay:{name:"B&B Hotel Mannheim-City", addr:"C 7, 9-11, 68159 Mannheim", note:"Check-out hasta 12:00h (al día siguiente)"}, items:[
+{date:"🎓 13 Sep (domingo) — Heidelberg 🇩🇪 + Mannheim 🇩🇪", stay:{name:"B&B Hotel Mannheim-City", addr:"C 7, 9-11, 68159 Mannheim", note:"Check-out hasta 12:00h (al día siguiente)"}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Mannheim → Heidelberg (tren, 11-16 min)",
   "09:20-12:30 — Heidelberg: Schloss Heidelberg, Alte Brücke, casco antiguo",
@@ -181,7 +181,7 @@ const DAYS = [
   "18:00-19:00 — Cena (adelantada)", "19:00-21:00 — Lavandería",
   "Noche — Empacar para la salida temprana del día siguiente"
 ]},
-{date:"🇨🇭 14 Sep (lunes) — Mannheim → Zúrich → Interlaken", stay:{name:"Airbnb Interlaken (Ali Agha)", addr:"Brienzstrasse 36, Interlaken", note:"14→15 Sep · Check-in 15:00h"}, items:[
+{date:"🇨🇭 14 Sep (lunes) — Mannheim 🇩🇪 → Zúrich 🇨🇭 → Interlaken 🇨🇭", stay:{name:"Airbnb Interlaken (Ali Agha)", addr:"Brienzstrasse 36, Interlaken", note:"14→15 Sep · Check-in 15:00h"}, items:[
   "05:30 — Despertar", "05:30-06:00 — Desayuno (verificar horario del hotel)",
   "06:15 — Llegada a la estación", "06:37 — Mannheim Hbf → Zürich HB",
   "10:00 — Llegada a Zúrich", "10:00-13:00 — Lindenhof, Fraumünster, Grossmünster, Peterskirche",
@@ -189,7 +189,7 @@ const DAYS = [
   "18:40 — Llegada a la estación", "19:02 — Zürich HB → Interlaken Ost (IC 830)",
   "20:59 — Llegada a Interlaken", "21:15-22:00 — Cena (tardía)"
 ]},
-{date:"🏔️ 15 Sep (martes) — Lauterbrunnen + Grindelwald → Chur", stay:{name:"Hotel Franziskaner", addr:"Kupfergasse 18, 7000 Chur", note:"15→16 Sep, 1 noche · Check-in 15:00-22:00h"}, items:[
+{date:"🏔️ 15 Sep (martes) — Lauterbrunnen 🇨🇭 + Grindelwald 🇨🇭 → Chur 🇨🇭", stay:{name:"Hotel Franziskaner", addr:"Kupfergasse 18, 7000 Chur", note:"15→16 Sep, 1 noche · Check-in 15:00-22:00h"}, items:[
   "07:30 — Despertar", "08:00-08:30 — Desayuno",
   "08:30 — Check-out, equipaje en consigna en Interlaken Ost",
   "09:30 — Interlaken Ost → Lauterbrunnen, llegada 09:52h",
@@ -202,7 +202,7 @@ const DAYS = [
   "18:29 — Interlaken Ost → Zürich HB (IC 61, directo), llegada ~20:28h",
   "Transbordo en Zúrich → Chur, llegada 21:52h", "22:00-23:00 — Cena (muy tardía)"
 ], flag:"Llegan a las 21:52h, solo 8 min antes de que cierre el check-in (22:00h). Avisar al hotel con antelación por si el tren se retrasa."},
-{date:"🚂 16 Sep (miércoles) — Chur → Venecia", stay:{name:"Haus Ormesini", addr:"Cannaregio 2685, 30121 Venecia", note:"16→18 Sep, 2 noches · Check-in 15:00-20:00h"}, items:[
+{date:"🚂 16 Sep (miércoles) — Chur 🇨🇭 → Venecia 🇮🇹", stay:{name:"Haus Ormesini", addr:"Cannaregio 2685, 30121 Venecia", note:"16→18 Sep, 2 noches · Check-in 15:00-20:00h"}, items:[
   "07:00 — Despertar", "07:00-07:30 — Desayuno (verificar horario del hotel)",
   "07:45 — Check-out", "~08:00 — Chur → Pontresina (horario exacto pendiente)",
   "~10:00 — Llegada a Pontresina",
@@ -213,12 +213,12 @@ const DAYS = [
   "14:08 — Tirano → Milano → Venezia (Trenord 2831/Frecciarossa 9749/Regionale 16821)",
   "19:48 — Llegada a Venezia Santa Lucia", "20:15-21:15 — Cena"
 ], flag:"Llegan a la estación a las 19:48h con muy poco margen para llegar a Cannaregio antes de que cierre el check-in (20:00h). Avisar al alojamiento con antelación."},
-{date:"🎭 17 Sep (jueves) — Venecia", stay:{name:"Haus Ormesini", addr:"Cannaregio 2685, 30121 Venecia", note:""}, items:[
+{date:"🎭 17 Sep (jueves) — Venecia 🇮🇹", stay:{name:"Haus Ormesini", addr:"Cannaregio 2685, 30121 Venecia", note:""}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:00 — Día libre en Venecia (contenido pendiente de definir)",
   "13:00-14:00 — Almuerzo", "Tarde libre", "20:00-21:00 — Cena"
 ]},
-{date:"⛪ 18 Sep (viernes) — Venecia → Roma + Vaticano", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:"18→21 Sep, 3 noches · check-in/out pendiente de confirmar"}, items:[
+{date:"⛪ 18 Sep (viernes) — Venecia 🇮🇹 → Roma 🇮🇹", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:"18→21 Sep, 3 noches · check-in/out pendiente de confirmar"}, items:[
   "06:00 — Despertar", "06:00-06:30 — Desayuno (verificar horario del hotel)",
   "06:30 — Check-out", "06:45 — Salida hacia la estación", "07:00 — Llegada a la estación",
   "07:26 — Venezia S. Lucia → Roma Termini (Frecciarossa 9405)",
@@ -228,7 +228,7 @@ const DAYS = [
   "15:00 — Tour guiado Museos Vaticanos (español, código 2L2N0R8S3TTG95HHM1)",
   "16:30 — Fin del tour aprox., traslado al hotel", "20:00-21:00 — Cena"
 ]},
-{date:"🏟️ 19 Sep (sábado) — Coliseo", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:""}, items:[
+{date:"🏟️ 19 Sep (sábado) — Roma 🇮🇹", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:""}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
   "09:30 — Llegada al Coliseo (15 min antes)", "10:00 — Visita al Coliseo",
   "11:30-14:00 — Foro Romano y Palatino", "14:00-15:00 — Almuerzo en Monti",
@@ -239,13 +239,13 @@ const DAYS = [
   "18:30-20:00 — Paseo por Trastevere",
   "20:00-21:00 — Cena en Trastevere"
 ]},
-{date:"⛪ 20 Sep (domingo) — Basílica de San Pedro + lavandería", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:""}, items:[
+{date:"⛪ 20 Sep (domingo) — Roma 🇮🇹", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:""}, items:[
   "08:30 — Despertar", "08:30-09:00 — Desayuno", "09:30 — Basílica de San Pedro (entrada libre)",
   "11:15 — Llegada a la Plaza de San Pedro (45 min antes)", "12:00 — Ángelus del Papa",
   "13:00-14:00 — Almuerzo", "Tarde libre en Roma", "18:00-19:00 — Cena (adelantada)",
   "19:00-21:00 — Lavandería"
 ]},
-{date:"🗼 21 Sep (lunes) — Roma → París + Torre Eiffel", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:"21→24 Sep, 3 noches · Check-in 16:00-21:00h"}, items:[
+{date:"🗼 21 Sep (lunes) — Roma 🇮🇹 → París 🇫🇷", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:"21→24 Sep, 3 noches · Check-in 16:00-21:00h"}, items:[
   "06:30 — Despertar", "06:30-07:00 — Desayuno + check-out",
   "07:00 — Salida hacia Fiumicino (traslado directo, ~45-60 min)",
   "08:00-08:15 — Llegada a Fiumicino", "10:50 — Roma Fiumicino → Paris Orly (Transavia TO3911)",
@@ -255,17 +255,17 @@ const DAYS = [
   "16:00 — Check-in en el apartamento", "16:30 — Salida hacia la Torre Eiffel",
   "17:00-19:00 — Torre Eiffel (entrada pendiente de comprar)", "20:00-21:00 — Cena"
 ]},
-{date:"👑 22 Sep (martes) — Versalles", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:""}, items:[
+{date:"👑 22 Sep (martes) — Versalles 🇫🇷", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:""}, items:[
   "07:30 — Despertar", "07:30-08:00 — Desayuno", "08:15 — Salida hacia Versalles (RER C)",
   "09:30 — Llegada a Versalles (30 min antes)", "10:00 — Entrada Palacio de Versalles",
   "13:00-14:00 — Almuerzo", "Tarde — Jardines de Versalles", "20:00-21:00 — Cena"
 ]},
-{date:"🖼️ 23 Sep (miércoles) — Louvre + Notre-Dame", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:""}, items:[
+{date:"🖼️ 23 Sep (miércoles) — París 🇫🇷", stay:{name:"Appartement Tour Eiffel Alésia", addr:"87 Rue d'Alésia, 14th arr., 75014 París", note:""}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno", "09:00 — Salida hacia el Louvre",
   "09:15 — Llegada (15 min antes)", "09:30 — Entrada Louvre", "12:30 — Fin de la visita",
   "12:30-13:30 — Almuerzo", "14:00 — Notre-Dame", "20:00-21:00 — Cena"
 ]},
-{date:"✈️ 24 Sep (jueves) — Regreso a Quito", stay:null, items:[
+{date:"✈️ 24 Sep (jueves) — París 🇫🇷 → Quito 🇪🇨", stay:null, items:[
   "07:00 — Despertar", "07:00-07:30 — Desayuno + check-out",
   "10:30 — Salida hacia el aeropuerto CDG (~1h-1h15min)", "12:00 — Llegada a CDG",
   "12:30-13:30 — Almuerzo en el aeropuerto",
