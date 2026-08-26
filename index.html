@@ -139,7 +139,7 @@ const DAYS = [
   "09:45-10:00 — Jardines de Sanssouci", "10:00-12:30 — Palacio Sanssouci",
   "12:30-13:30 — Almuerzo", "13:30-15:00 — Barrio Holandés",
   "15:00 — Regreso a Potsdam Hbf", "15:30-16:15 — Vuelta a Berlín Hbf",
-  "16:15-17:15 — Recoger maletas", "17:28 — Berlín Hbf → Praha hl.n. (RJ 385)",
+  "16:15-17:15 — Recoger maletas", "17:28 — Berlín Hbf → Praha hl.n. (RJ 385, vagón 261, asientos 31, 32, 33, 38)",
   "21:25 — Llegada a Praga, traslado al hotel", "21:45-22:45 — Cena (tardía)"
 ]},
 {date:"🌉 9 Sep (miércoles) — Praga, República Checa 🇨🇿", stay:{name:"Riverside Palace Suites", addr:"3 Resslova, Praga, 120 00", note:""}, items:[
@@ -153,7 +153,7 @@ const DAYS = [
   "08:30 — Despertar", "08:30-09:00 — Desayuno", "09:00-10:00 — Empacar y check-out (hasta 10:00h)",
   "10:00-12:00 — Malá Strana + Torre del Puente", "13:00-14:00 — Almuerzo",
   "14:30 — Salida hacia la estación", "15:00 — Llegada a la estación",
-  "15:35 — Praha hl.n. → München Hbf (EC 352)",
+  "15:35 — Praha hl.n. → München Hbf (EC 352, vagón 262, asientos 33-36)",
   "21:18 — Llegada a Múnich, traslado al hotel", "21:30-22:30 — Cena (tardía)"
 ]},
 {date:"🍺 11 Sep (viernes) — Múnich → Füssen, Alemania 🇩🇪", stay:{name:"My Wolly Hostel", addr:"11 Reichenstraße 1 OG, 87629 Füssen", note:"11→12 Sep, 1 noche · Check-in 15:00-18:00h"}, items:[
@@ -169,8 +169,10 @@ const DAYS = [
   "09:50 — Fin del tour", "10:00-12:30 — Tiempo libre (pueblo, lago Alpsee)",
   "12:30-13:30 — Almuerzo", "13:40 — Entrada Hohenschwangau", "14:10 — Fin del tour",
   "14:30 — Regreso a Füssen, recoger equipaje del hostel", "15:00 — Salida hacia la estación",
-  "Tarde — Füssen → Mannheim (horario exacto pendiente de confirmar)",
-  "20:00-21:00 — Cena (estimado)"
+  "17:20 — Füssen → Augsburg Hbf (RB68, trasbordo a RB77 a las 17:20h)",
+  "19:17 — Augsburg Hbf → Mannheim Hbf (ICE 590, andén 1 en Augsburg — sin asiento reservado, confirmar cada día)",
+  "21:26 — Llegada a Mannheim Hbf (andén 2)",
+  "21:45-22:45 — Cena (tardía, tras la llegada)"
 ]},
 {date:"🎓 13 Sep (domingo) — Heidelberg → Mannheim, Alemania 🇩🇪", stay:{name:"B&B Hotel Mannheim-City", addr:"C 7, 9-11, 68159 Mannheim", note:"Check-out hasta 12:00h (al día siguiente)"}, items:[
   "08:00 — Despertar", "08:00-08:30 — Desayuno",
@@ -183,7 +185,7 @@ const DAYS = [
 ]},
 {date:"🇨🇭 14 Sep (lunes) — Mannheim, Alemania 🇩🇪 → Zúrich → Interlaken, Suiza 🇨🇭", stay:{name:"Airbnb Interlaken (Ali Agha)", addr:"Brienzstrasse 36, Interlaken", note:"14→15 Sep · Check-in 15:00h"}, items:[
   "05:30 — Despertar", "05:30-06:00 — Desayuno (verificar horario del hotel)",
-  "06:15 — Llegada a la estación", "06:37 — Mannheim Hbf → Zürich HB",
+  "06:15 — Llegada a la estación", "06:37 — Mannheim Hbf → Zürich HB (ICE 273, vagón 5, asientos 103, 104, 107, 108, andén 4 en Mannheim / andén 13 en Zúrich)",
   "10:00 — Llegada a Zúrich", "10:00-13:00 — Lindenhof, Fraumünster, Grossmünster, Peterskirche",
   "13:00-14:00 — Almuerzo", "14:00-18:30 — Paseo por el lago, tiempo libre",
   "18:40 — Llegada a la estación", "19:02 — Zürich HB → Interlaken Ost (IC 830)",
@@ -206,11 +208,13 @@ const DAYS = [
   "07:00 — Despertar", "07:00-07:30 — Desayuno (verificar horario del hotel)",
   "07:45 — Check-out", "~08:00 — Chur → Pontresina (horario exacto pendiente)",
   "~10:00 — Llegada a Pontresina",
-  "10:08 — Pontresina → Alp Grüm (Bernina Regio 4621), llegada 10:49h",
+  "10:08 — Pontresina → Alp Grüm (Bernina Regio 4621, vagón 1, asientos 34-37), llegada 10:49h",
   "10:49-11:44 — Parada en Alp Grüm",
   "11:44 — Alp Grüm → Tirano (Bernina Regio 1625), llegada 13:00h",
   "13:00-14:00 — Almuerzo en Tirano",
-  "14:08 — Tirano → Milano → Venezia (Trenord 2831/Frecciarossa 9749/Regionale 16821)",
+  "14:08 — Tirano → Milano (Trenord 2831)",
+  "17:15 — Milano Centrale → Venezia Mestre (Frecciarossa 9749, vagón 5, asientos 12A, 12B, 13A, 13B), llegada 19:28h",
+  "Venezia Mestre → Venezia S. Lucia (Regionale 16821)",
   "19:48 — Llegada a Venezia Santa Lucia", "20:15-21:15 — Cena"
 ], flag:"Llegan a la estación a las 19:48h con muy poco margen para llegar a Cannaregio antes de que cierre el check-in (20:00h). Avisar al alojamiento con antelación."},
 {date:"🎭 17 Sep (jueves) — Venecia, Italia 🇮🇹", stay:{name:"Haus Ormesini", addr:"Cannaregio 2685, 30121 Venecia", note:""}, items:[
@@ -221,7 +225,7 @@ const DAYS = [
 {date:"⛪ 18 Sep (viernes) — Venecia → Roma, Italia 🇮🇹", stay:{name:"GM House Rome", addr:"129 Via Alessandria, 00198 Roma", note:"18→21 Sep, 3 noches · check-in/out pendiente de confirmar"}, items:[
   "06:00 — Despertar", "06:00-06:30 — Desayuno (verificar horario del hotel)",
   "06:30 — Check-out", "06:45 — Salida hacia la estación", "07:00 — Llegada a la estación",
-  "07:26 — Venezia S. Lucia → Roma Termini (Frecciarossa 9405)",
+  "07:26 — Venezia S. Lucia → Roma Termini (Frecciarossa 9405, vagón 5, asientos 15C, 15D, 16C, 16D)",
   "11:22 — Llegada a Roma Termini", "11:22-11:40 — Deposito Bagagli en Termini",
   "12:00-13:00 — Almuerzo cerca de Termini", "13:00-14:00 — Traslado hacia el Vaticano",
   "14:30 — Llegada al Vaticano (30 min antes del tour)",
